@@ -1,0 +1,26 @@
+{
+  "name": "instagram",
+  "version": "1.0.0",
+  "description": "Instagram Clone by Cornelia",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cornelia-schulz/instagram.git"
+  },
+  "keywords": [
+    "instagram",
+    "photos",
+    "react",
+    "firebase",
+    "tailwind"
+  ],
+  "author": "Cornelia Schulz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cornelia-schulz/instagram/issues"
+  },
+  "homepage": "https://github.com/cornelia-schulz/instagram#readme"
+}
