@@ -8,9 +8,7 @@ module.exports = {
     filename: 'index_bundle.js',
     publicPath: '/'
   },
-  "entry": {
-    "index": "./src/index"
-  },
+  "entry": ["babel-polyfill", "./src/index"],
   mode: "development",
   module: {
     rules: [

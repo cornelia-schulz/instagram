@@ -1,13 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import FirebaseContext from '../context/firebase';
 import * as ROUTES from '../constants/routes';
 
 export default function Login() {
-  // const [isInvalid, setIsInvalid] = useState(true);
+  const { firebase } = useContext(FirebaseContext);
+
   const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
   const [password, setPassword] = useState('');
+
+  const [error, setError] = useState('');
   const isInvalid = password === '' || email === '';
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      setEmail('');
+      setPassword('');
+      setError(error.message);
+    }
+  }
 
   useEffect(() => {
     document.title = "Login - Instagram";
@@ -23,13 +38,14 @@ export default function Login() {
         <h1 className="flex justify-center w-full">
           <img src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12 mb-4" />
         </h1>
-        <form method="POST">
+        <form method="POST" onSubmit={handleLogin}>
           <input
             aria-label="Enter your email address"
             className="text-sm w-full mr-3 py-5 px-4 h-2 border rounded mb-2"
             type="text"
             onChange={({ target }) => setEmail(target.value)}
             placeholder="Email address"
+            value={email}
           />
           <input
             aria-label="Enter your password"
@@ -37,11 +53,12 @@ export default function Login() {
             type="password"
             onChange={({ target }) => setPassword(target.value)}
             placeholder="Password"
+            value={password}
           />
           <button
             disabled={isInvalid}
             type="submit"
-            className={`bg-blue-500 text-white w-full rounded h-12 font-bold ${isInvalid && 'opacity-50'}`}
+            className={`bg-blue-500 text-white w-full rounded h-12 font-bold ${isInvalid && 'cursor-not-allowed opacity-50'}`}
           >
             Log In
           </button>
