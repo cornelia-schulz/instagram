@@ -8,6 +8,7 @@ module.exports = {
     filename: 'index_bundle.js',
     publicPath: '/'
   },
+  // babel-polyfill needs to be called otherwise async calls will result in error
   "entry": ["babel-polyfill", "./src/index"],
   mode: "development",
   module: {
@@ -24,6 +25,7 @@ module.exports = {
   },
   resolve: {
     fallback: {
+      // add these fallbacks as these things are not included in webpack as of version 5
       "fs": false,
       "tls": false,
       "net": false,
@@ -41,7 +43,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-        template: 'src/index.html'
+      // use inject false as it otherwise calls babel-polyfill again
+      inject: false,
+      template: 'src/index.html'
     }),
     new webpack.ProvidePlugin({
       process: 'process/browser',

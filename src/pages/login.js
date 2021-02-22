@@ -1,9 +1,10 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import FirebaseContext from '../context/firebase';
 import * as ROUTES from '../constants/routes';
 
 export default function Login() {
+  const history = useHistory();
   const { firebase } = useContext(FirebaseContext);
 
   const [email, setEmail] = useState('');
@@ -17,6 +18,7 @@ export default function Login() {
 
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
+      history.push(ROUTES.DASHBOARD);
     } catch (error) {
       setEmail('');
       setPassword('');
@@ -38,6 +40,7 @@ export default function Login() {
         <h1 className="flex justify-center w-full">
           <img src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12 mb-4" />
         </h1>
+        {error && <p className="mb-4 text-xs text-red-500">{error}</p>}
         <form method="POST" onSubmit={handleLogin}>
           <input
             aria-label="Enter your email address"
