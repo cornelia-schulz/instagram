@@ -2,21 +2,22 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import FirebaseContext from '../context/firebase';
+import UserContext from '../context/user';
 
 export default function Header() {
   const { firebase } = useContext(FirebaseContext);
   // const user = null;
-  const user = { uid: '2', displayName: 'dali' }
-  const [error, setError] = useState('');
+  // const user = { uid: '2', displayName: 'dali' }
+  const { user } = useContext(UserContext);
 
-  const handleSignOut = async (event) => {
+  const handleSignOut = (event) => {
     event.preventDefault();
     if (user) {
       try {
-        await firebase.auth().signOut();
+        firebase.auth().signOut();
       } 
       catch(error) {
-        MediaStreamErrorEvent(error.message)
+        console.error(error.message);
       }
     }
   }
