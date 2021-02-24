@@ -6,8 +6,6 @@ import UserContext from '../context/user';
 
 export default function Header() {
   const { firebase } = useContext(FirebaseContext);
-  // const user = null;
-  // const user = { uid: '2', displayName: 'dali' }
   const { user } = useContext(UserContext);
 
   const handleSignOut = (event) => {
