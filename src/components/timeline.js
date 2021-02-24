@@ -1,5 +1,6 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
+import Post from './post';
 import useFollowedUsersPhotos from '../hooks/use-followed-users-photos';
 
 export default function Timeline() {
@@ -8,14 +9,10 @@ export default function Timeline() {
 
   console.log(photos)
   return (
-    <div>
-      {photos ? (
-        photos.map((photo, index) => (
-          <div key={index}>
-            <img src={photo.imageSrc} alt="user image"/>
-            <p>{photo.username}</p>
-          </div>
-          
+    <div className="ml-8">
+      {photos && photos.length > 0 ? (
+        photos.map((photo) => (
+          <Post key={photo.docId} content={photo} />
         ))
       ) : ( 
         <Skeleton

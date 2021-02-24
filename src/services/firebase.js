@@ -48,6 +48,6 @@ export async function getUserFollowedPhotos(userId, followingUserIds) {
         return { username, ...photo, userLikedPhoto };
       })
     )
-      console.log('fire', photoWithUserDetails)
+    
     return photoWithUserDetails;
 }

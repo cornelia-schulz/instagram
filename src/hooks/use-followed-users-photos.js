@@ -3,7 +3,6 @@ import UserContext from '../context/user';
 import { getUserByUserId, getUserFollowedPhotos } from '../services/firebase';
 
 export default function useFollowedUsersPhotos() {
-  console.log('hello from hook')
   const [photos, setPhotos] = useState(null);
   const { user: { uid: userId = '' } } = useContext(UserContext);
 
@@ -20,7 +19,6 @@ export default function useFollowedUsersPhotos() {
       }
         
       getTimelinePhotos();
-      console.log('photos', photos)
   }, [userId]);
 
   return { photos };
