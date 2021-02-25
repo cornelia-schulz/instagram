@@ -9,7 +9,7 @@ export default function Timeline() {
 
   console.log(photos)
   return (
-    <div className="ml-8">
+    <div className="container col-span-2">
       {photos && photos.length > 0 ? (
         photos.map((photo) => (
           <Post key={photo.docId} content={photo} />

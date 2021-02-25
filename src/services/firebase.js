@@ -51,3 +51,7 @@ export async function getUserFollowedPhotos(userId, followingUserIds) {
     
     return photoWithUserDetails;
 }
+
+export async function getSuggestedProfiles() {
+  // function
+}
