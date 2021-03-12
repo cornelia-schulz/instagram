@@ -12,6 +12,10 @@ export async function doesUsernameExist(username) {
   return result.docs.map((user) => user.data().length > 0);
 }
 
+export async function getUserByUsername(username) {
+  
+}
+
 export async function getUserByUserId(userId) {
   const result = await firebase
     .firestore()
