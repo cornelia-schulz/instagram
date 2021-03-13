@@ -12,10 +12,6 @@ export async function doesUsernameExist(username) {
   return result.docs.map((user) => user.data().length > 0);
 }
 
-export async function getUserByUsername(username) {
-  
-}
-
 export async function getUserByUserId(userId) {
   const result = await firebase
     .firestore()
@@ -89,4 +85,49 @@ export async function updateFollowedUserFollowers(docId, followingUserId, isFoll
       ? FieldValue.arrayRemove(followingUserId) 
       : FieldValue.arrayUnion(followingUserId)
     })
+}
+
+export async function getUserByUsername(username) {
+  const result = await firebase
+    .firestore()
+    .collection('users')
+    .where('username', '==', username)
+    .get();
+
+    const user = result.docs.map((item) => ({
+      ...item.data(),
+      docId: item.id
+    }));
+
+    return user.length > 0 ? user[0] : false;
+}
+
+export async function getUserIdByUsername(username) {
+  const result = await firebase
+    .firestore()
+    .collection('users')
+    .where('username', '==', username)
+    .get();
+
+  const [{ userId }] = result.docs.map((item) => ({
+    ...item.data()
+  }));
+
+  return userId;
+}
+
+export async function getUserPhotosByUsername(username) {
+  const userId = await getUserIdByUsername(username);
+  const result = await firebase
+    .firestore()
+    .collection('photos')
+    .where('userId', '==', userId)
+    .get()
+
+    const photos = result.docs.map((photo) => ({
+      ...photo.data(),
+      docId: photo.id
+    }))
+
+    return photos.length > 0 ? photos : false;
 }

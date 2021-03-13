@@ -16,6 +16,7 @@ export default function Profile() {
       if (!doesUserExist) {
         history.push(ROUTES.NOT_FOUND);
       } else {
+        localStorage.setItem('profileInfo', JSON.stringify(doesUserExist))
         setUserExists(true);
       }
     }
