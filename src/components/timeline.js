@@ -5,9 +5,7 @@ import useFollowedUsersPhotos from '../hooks/use-followed-users-photos';
 
 export default function Timeline() {
   const { photos } = useFollowedUsersPhotos();
-  // const photos = ['/images/users/raphael/1.jpg', '/images/users/raphael/2.jpg', '/images/users/raphael/3.jpg', '/images/users/raphael/4.jpg', '/images/users/raphael/5.jpg']
 
-  console.log(photos)
   return (
     <div className="container col-span-2">
       {photos && photos.length > 0 ? (

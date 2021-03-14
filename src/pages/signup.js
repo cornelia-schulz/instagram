@@ -20,7 +20,6 @@ export default function SignUp() {
   const isInvalid = username === '' || name === '' || email === '' || password === '';
 
   const validateUsername = (event) => {
-    console.log(event);
     setError('');
     if(event.target.value.includes(' ')) {
       setError('Username cannot contain spaces');
