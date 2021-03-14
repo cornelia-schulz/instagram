@@ -129,5 +129,5 @@ export async function getUserPhotosByUsername(username) {
       docId: photo.id
     }))
 
-    return photos.length > 0 ? photos : false;
+    return photos;
 }

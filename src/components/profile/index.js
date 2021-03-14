@@ -36,7 +36,7 @@ export default function UserProfile({ username }) {
   return (
     <>
       <Header
-        photoCollection={photoCollection.length}
+        photoCount={photoCollection.length}
         profile={profile}
         followerCount={followerCount}
         setFollowerCount={dispatch}
