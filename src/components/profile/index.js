@@ -40,6 +40,7 @@ export default function UserProfile({ username }) {
         profile={profile}
         followerCount={followerCount}
         setFollowerCount={dispatch}
+        username={username}
       />
       <Photos photos={photoCollection} />
     </>
